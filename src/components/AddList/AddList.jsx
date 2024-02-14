@@ -5,9 +5,29 @@ import Badge from '../Badge/Badge';
 import './AddList.scss';
 import closeSvg from '../../assets/img/close.svg';
 
-const AddList = ({ colors }) => {
+const AddList = ({ colors, onAdd }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedColor, setSelectedColor] = useState(colors[0].id);
+  const [inputValue, setInputValue] = useState('');
+
+  const onClose = () => {
+    setVisiblePopup(!visiblePopup);
+    setInputValue('');
+    setSelectedColor(colors[0].id);
+  };
+
+  const addList = () => {
+    if (!inputValue) {
+      alert('enter task name');
+    } else {
+      const color = colors.filter((c) => c.id === selectedColor)[0].name;
+      onAdd({
+        id: Math.random(),
+        name: inputValue,
+        color: color,
+      });
+    }
+  };
 
   return (
     <div className="add-list">
@@ -43,10 +63,7 @@ const AddList = ({ colors }) => {
           },
         ]}
         isRemovable={false}
-        onClick={() => {
-          setVisiblePopup(!visiblePopup);
-          setSelectedColor(colors[0].id);
-        }}
+        onClick={onClose}
       />
       {visiblePopup && (
         <div className="add-list__popup">
@@ -54,12 +71,15 @@ const AddList = ({ colors }) => {
             className="add-list__popup-close-btn"
             src={closeSvg}
             alt="close btn"
-            onClick={() => {
-              setVisiblePopup(false);
-              setSelectedColor(colors[0].id);
-            }}
+            onClick={onClose}
           />
-          <input className="field" type="text" placeholder="Enter task name..." />
+          <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="field"
+            type="text"
+            placeholder="Enter task name..."
+          />
           <div className="add-list__popup-colors">
             {colors.map((color, i) => (
               <Badge
@@ -70,7 +90,9 @@ const AddList = ({ colors }) => {
               />
             ))}
           </div>
-          <button className="button">Add</button>
+          <button onClick={addList} className="button">
+            Add
+          </button>
         </div>
       )}
     </div>

@@ -21,6 +21,7 @@ $acent: #8000ff;
   border-radius: 10px;
   border: 1px solid #f4f6f8;
   font-size: 14px;
+  display: flex;
 
   &__sidebar {
     background-color: #f4f4f8;
@@ -28,6 +29,11 @@ $acent: #8000ff;
     height: calc(100% - 120px);
     border-right: 1px solid #f1f1f1;
     padding: 60px 20px;
+  }
+
+  &__tasks {
+    flex: 1;
+    padding: 60px;
   }
 }
 
