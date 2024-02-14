@@ -1,5 +1,8 @@
 import React from 'react';
-import List from './components/List';
+import List from './components/List/List';
+import AddListButton from './components/AddList/AddList';
+
+import DB from './assets/db.json';
 
 const App = () => {
   return (
@@ -25,20 +28,17 @@ const App = () => {
               name: 'All tasks',
               active: true,
             },
-            {
-              color: 'green',
-              name: 'buy',
-            },
-            {
-              color: 'blue',
-              name: 'frontend',
-            },
-            {
-              color: 'pink',
-              name: 'films',
-            },
           ]}
+          isRemovable={false}
         />
+        <List
+          items={DB.lists.map((item) => {
+            item.color = DB.colors.filter((color) => color.id === item.colorId)[0].name;
+            return item;
+          })}
+          isRemovable
+        />
+        <AddListButton colors={DB.colors} />
       </div>
       <div className="tasks"></div>
     </div>

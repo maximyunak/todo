@@ -1,3 +1,5 @@
+$acent: #8000ff;
+
 * {
   margin: 0;
   padding: 0;
@@ -23,8 +25,36 @@
   &__sidebar {
     background-color: #f4f4f8;
     width: 200px;
-    height: 100%;
+    height: calc(100% - 120px);
     border-right: 1px solid #f1f1f1;
     padding: 60px 20px;
+  }
+}
+
+.button {
+  background-color: $acent;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($acent, 10%);
+  }
+}
+
+.field {
+  background-color: #fff;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px 12px;
+  transition: 0.3s;
+
+  &:focus {
+    border-color: #acacac;
   }
 }
