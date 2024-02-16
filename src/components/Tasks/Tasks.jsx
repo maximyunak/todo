@@ -36,7 +36,7 @@ const Tasks = () => {
                 </svg>
               </label>
             </div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia, labore?</p>
+            <input value="lorem sdj njadnfjca,vneuvlacfwej i" />
           </div>
         </div>
       </div>
